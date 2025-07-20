@@ -1,0 +1,11 @@
+
+{
+  "player_id": "test001",
+  "session_start": "2025-07-20T18:05:00Z",
+  "events": [
+    {"timestamp": 1.1, "event": "hit_boss", "damage": 10},
+    {"timestamp": 2.3, "event": "dodge"},
+    {"timestamp": 3.0, "event": "heal"},
+    {"timestamp": 5.0, "event": "boss_state_change", "to": "rage"}
+  ]
+}
