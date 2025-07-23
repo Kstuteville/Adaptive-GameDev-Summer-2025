@@ -4,8 +4,47 @@ using UnityEngine;
 
 public class BossLogger : MonoBehaviour
 {
-    private List<Dictionary<string, object>> eventLog = new List<Dictionary<string, object>>();
 
+    //track stats
+    private int totalAttacks = 0;
+    private int successfulHits = 0;
+
+    private int totalDodges = 0;
+    private int successfulDodges = 0;
+
+
+    private List<Dictionary<string, object>> eventLog = new List<Dictionary<string, object>>();
+    
+    //Register attack
+    public void RegisterAttack(book didHit){
+        totalAttacks++;
+        if (didHit) successfulHits++;
+         LogEvent("PlayerAttack", "Player", "Boss", Time.time, new Dictionary<string, object>
+        {
+            {"didHit", didHit},
+            {"totalAttacks", totalAttacks},
+            {"successfulHits", successfulHits},
+            {"accuracy", (float)successfulHits / totalAttacks}
+        });
+    }
+
+    //Register Dodge
+    public void RegisterDodge(book wasSuccessful){
+        totalDodges++;
+        if (wasSuccessful) successfulDodges++;
+         LogEvent("PlayerDodge", "Player", "Boss", Time.time, new Dictionary<string, object>
+        {
+            {"wasSuccessful", wasSuccessful},
+            {"totalDodges", totalDodges},
+            {"successfulDodges", successfulDodges},
+            {"dodgeSuccessRate", (float)successfulDodges / totalDodges}
+        });
+    }
+    
+    
+    
+    
+    //core method to log any event in json
     public void LogEvent(string eventType, string source, string target, float time, Dictionary<string, object> extraData = null)
     {
         var logEntry = new Dictionary<string, object>
