@@ -1,0 +1,1 @@
+// Controls NPC reactions based on their state and world events
