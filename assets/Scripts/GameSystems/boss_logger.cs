@@ -16,7 +16,7 @@ public class BossLogger : MonoBehaviour
     private List<Dictionary<string, object>> eventLog = new List<Dictionary<string, object>>();
     
     //Register attack
-    public void RegisterAttack(book didHit){
+    public void RegisterAttack(bool didHit){
         totalAttacks++;
         if (didHit) successfulHits++;
          LogEvent("PlayerAttack", "Player", "Boss", Time.time, new Dictionary<string, object>
@@ -29,7 +29,7 @@ public class BossLogger : MonoBehaviour
     }
 
     //Register Dodge
-    public void RegisterDodge(book wasSuccessful){
+    public void RegisterDodge(bool wasSuccessful){
         totalDodges++;
         if (wasSuccessful) successfulDodges++;
          LogEvent("PlayerDodge", "Player", "Boss", Time.time, new Dictionary<string, object>

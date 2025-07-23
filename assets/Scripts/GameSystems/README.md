@@ -1,4 +1,4 @@
-# Prototypes
+# Game System
 
 This folder contains standalone scripts that demonstrate key systems in the adaptive boss fight design.
 

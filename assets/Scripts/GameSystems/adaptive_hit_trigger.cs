@@ -5,6 +5,8 @@ public class AdaptiveHitTrigger : MonoBehaviour
 {
     public BossFSM bossFSM;
     public BossLogger logger;
+    public SkillMetricsUI skillMetricsUI; // Reference to the SkillMetricsUI
+
     
     private List<float> hitTimestamps = new List<float>();
     public float rageWindow = 5.0f;
@@ -23,6 +25,11 @@ public class AdaptiveHitTrigger : MonoBehaviour
             {"damage", damage},
             {"recentHits", hitTimestamps.Count}
         });
+
+        // Update skill metrics UI with attack result
+        bool didHit = damage > 0; // Assuming a hit means damage is > 0
+        skillMetricsUI.RegisterAttack(didHit); // Update attack accuracy
+
 
         if (hitTimestamps.Count >= rageHitThreshold)
         {
