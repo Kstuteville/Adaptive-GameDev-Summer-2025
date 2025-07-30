@@ -23,6 +23,38 @@ public class BossBehaviorController : MonoBehaviour
 
     void AdjustBehaviorBasedOnTier()
     {
+        switch (playerSkill){
+            case SkillTier.Novice:
+                attackPattern = AttackPattern.Simple;
+                ...
+                break;
+
+             case SkillTier.Intermediate:
+                attackPattern = AttackPattern.Balanced;
+                ...
+                break;
+
+            case SkillTier.Expert:
+                attackPattern = AttackPattern.AggressiveFeints;
+                recoveryTimeModifier = 0.9f;     
+                attackRateModifier = 1.25f;      
+                ...
+                break;
+        }
+
+
+
+            // Adjust behavior when Rage mode is entered
+        if (currentState == BossState.Rage)
+        {
+            attackPattern = AttackPattern.AggressiveFeints;
+            tauntFrequency = 0.7f;
+            recoveryTimeModifier = 0.8f; // Boost aggression when in Rage mode
+        }
+
+        Debug.Log($"[BossBehaviorController] Adjusted for {playerSkill} player.");
+        }
+
         if (difficultyManager != null)
         {
             SkillTier tier = difficultyManager.GetCurrentSkillTier();
